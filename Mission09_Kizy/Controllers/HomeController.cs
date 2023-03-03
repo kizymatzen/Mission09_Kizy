@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Mission09_Kizy.Models;
-
+using Mission09_Kizy.Models.ViewModels;
 
 namespace Mission09_Kizy.Controllers
 {
@@ -20,12 +20,22 @@ namespace Mission09_Kizy.Controllers
         {
             int pageSize = 5;
 
-            var book = repo.Books
+            var x = new ProjectsViewModel
+            {
+                Books = repo.Books
                 .OrderBy(p => p.Author)
-                .Skip((pageNum -1) * pageSize)
-                .Take(pageSize);
+                .Skip((pageNum - 1) * pageSize)
+                .Take(pageSize),
 
-            return View(book);
+                PageInfo = new PageInfo
+                {
+                    TotalNumProjects = repo.Books.Count(),
+                    ProjectsPerPage = pageSize,
+                    CurrentPage = pageNum
+                }
+            };
+
+            return View(x);
         }
     }
 }
