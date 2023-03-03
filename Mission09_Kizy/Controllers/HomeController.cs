@@ -16,9 +16,14 @@ namespace Mission09_Kizy.Controllers
         {
             repo = temp;
         }
-        public IActionResult Index()
+        public IActionResult Index(int pageNum = 1)
         {
-            var book = repo.Projects.ToList();
+            int pageSize = 5;
+
+            var book = repo.Books
+                .OrderBy(p => p.Author)
+                .Skip((pageNum -1) * pageSize)
+                .Take(pageSize);
 
             return View(book);
         }

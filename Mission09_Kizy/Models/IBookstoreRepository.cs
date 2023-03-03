@@ -7,6 +7,6 @@ namespace Mission09_Kizy.Models
 {
     public interface IBookstoreRepository
     {
-        IQueryable<Project> Projects { get; }
+        IQueryable<Book> Books { get; }
     }
 }

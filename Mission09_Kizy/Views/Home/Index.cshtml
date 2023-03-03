@@ -1,12 +1,16 @@
 ﻿@{
 }
 
-@model List<Project>
+@model IQueryable<Book>
 
 <h1>The Book project</h1>
 
-@foreach(Project p in Model)
+@foreach(Book p in Model)
 {
                 <h3>@p.Title</h3>
 
             }
+
+<a asp-action="Index" asp-route-pageNum="1">1</a>
+<a asp-action="Index" asp-route-pageNum="2">2</a>
+<a asp-action="Index" asp-route-pageNum="3">3</a>

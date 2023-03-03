@@ -19,7 +19,7 @@ namespace Mission09_Kizy.Models
         {
         }
 
-        public DbSet<Project> Project { get; set; }
-        public object Projects { get; internal set; }
+        public DbSet<Book> Books { get; set; }
+        public object Book { get; internal set; }
     }
 }

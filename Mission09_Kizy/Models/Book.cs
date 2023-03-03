@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Mission09_Kizy.Models
 {
-    public partial class Project
+    public partial class Book
     {
         [Key]
         [Required]

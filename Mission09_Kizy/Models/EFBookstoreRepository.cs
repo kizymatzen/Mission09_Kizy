@@ -1,19 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Mission09_Kizy.Models;
+using System;
 using System.Linq;
-using System.Threading.Tasks;
 
-namespace Mission09_Kizy.Models
+namespace Bookstore.Models
 {
     public class EFBookstoreRepository : IBookstoreRepository
     {
+
+        // bring in BookstoreContext model
         private BookstoreContext context { get; set; }
 
-        public EFBookstoreRepository (BookstoreContext temp)
+        public EFBookstoreRepository(BookstoreContext temp)
         {
             context = temp;
         }
 
-        public IQueryable<Project> Projects => (IQueryable<Project>)context.Projects;
+        public IQueryable<Book> Books => context.Books;
     }
 }
