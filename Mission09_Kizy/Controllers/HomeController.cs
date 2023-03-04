@@ -18,7 +18,7 @@ namespace Mission09_Kizy.Controllers
         }
         public IActionResult Index(int pageNum = 1)
         {
-            int pageSize = 5;
+            int pageSize = 3;
 
             var x = new BooksViewModel
             {
@@ -34,6 +34,9 @@ namespace Mission09_Kizy.Controllers
                     CurrentPage = pageNum
                 }
             };
+
+            // Add the PageAction property
+            x.PageAction = "Index";
 
             return View(x);
         }

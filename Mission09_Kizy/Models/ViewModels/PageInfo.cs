@@ -12,7 +12,12 @@ namespace Mission09_Kizy.Models.ViewModels
         public int CurrentPage { get; set; }
 
         //Figure out how many pages we need
-        public int TotalPages =>(int) Math.Ceiling((double) TotalNumProjects / ProjectsPerPage);
+        public int TotalPages => (int)System.Math.Ceiling((double)TotalNumProjects / ProjectsPerPage);
 
+        public bool HasPreviousPage => CurrentPage > 1;
+
+        public bool HasNextPage => CurrentPage < TotalPages;
+        public string PageAction { get; set; }
+        public int PageNumber { get; set; }
     }
 }

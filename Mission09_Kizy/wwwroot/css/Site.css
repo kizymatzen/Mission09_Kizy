@@ -1,0 +1,54 @@
+﻿.pagination {
+    margin-top: 20px;
+}
+
+    .pagination ul {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+    }
+
+    .pagination li {
+        display: inline-block;
+        margin: 0 10px;
+    }
+
+    .pagination a {
+        text-decoration: none;
+        color: #000;
+        font-size: 18px;
+        padding: 5px 10px;
+        border: 1px solid #ccc;
+    }
+
+        .pagination a:hover {
+            background-color: #ccc;
+        }
+
+.book {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+    .book img {
+        width: 100%;
+    }
+
+    .book h3 {
+        margin-top: 0;
+    }
+
+    .book .author {
+        font-style: italic;
+        margin-bottom: 10px;
+    }
+
+    .book .description {
+        margin-bottom: 10px;
+    }
+
+    .book .price {
+        font-weight: bold;
+    }

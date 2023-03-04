@@ -9,5 +9,6 @@ namespace Mission09_Kizy.Models.ViewModels
     {
         public IQueryable<Book> Books { get; set; }
         public PageInfo PageInfo { get; set; }
+        public string PageAction { get; internal set; }
     }
 }
