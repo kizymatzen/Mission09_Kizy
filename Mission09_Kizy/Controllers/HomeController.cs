@@ -20,7 +20,7 @@ namespace Mission09_Kizy.Controllers
         {
             int pageSize = 5;
 
-            var x = new ProjectsViewModel
+            var x = new BooksViewModel
             {
                 Books = repo.Books
                 .OrderBy(p => p.Author)

@@ -20,6 +20,6 @@ namespace Mission09_Kizy.Models
         }
 
         public DbSet<Book> Books { get; set; }
-        public object Book { get; internal set; }
+        
     }
 }

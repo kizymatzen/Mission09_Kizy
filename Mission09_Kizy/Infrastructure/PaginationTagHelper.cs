@@ -41,8 +41,13 @@ namespace Mission09_Kizy.Infrastructure
             {
                 TagBuilder tb = new TagBuilder("a");
 
-                tb.Attributes["href"] = uh.Action(PageAction, )
+                tb.Attributes["href"] = uh.Action(PageAction, new { pageNum = i });
+                tb.InnerHtml.Append(i.ToString());
+
+                final.InnerHtml.AppendHtml(tb);
             }
+
+            tho.Content.AppendHtml(final.InnerHtml);
         }
     }
 }

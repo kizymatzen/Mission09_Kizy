@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Mission09_Kizy.Models.ViewModels
 {
-    public class ProjectsViewModel
+    public class BooksViewModel
     {
         public IQueryable<Book> Books { get; set; }
         public PageInfo PageInfo { get; set; }
