@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Mission09_Kizy.Infrastructure
 {
-    [HtmlTargetElement("div", Attributes = "page-model")]
+    [HtmlTargetElement("div", Attributes = "page-book")]
     public class PaginationTagHelper : TagHelper
     {
         //Dinamically create the page links for us

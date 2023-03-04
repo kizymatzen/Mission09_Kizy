@@ -1,15 +1,26 @@
 ﻿@{
+    ViewData["Title"] = "Home Page";
 }
 
-@model ProjectsViewModel
+@model BooksViewModel
 
 
 <h1>The Book project</h1>
 
-@foreach(Book p in Model.Books)
+@foreach (Book b in Model.Books)
 {
-                <h3>@p.Title</h3>
+    <h3>@b.Title</h3>
 
-            }
+    <ul>
+        <li>Author: @b.Author</li>
+        <li>Publisher: @b.Publisher</li>
+        <li>ISBN: @b.Isbn Served</li>
+        <li>Classification: @b.Classification</li>
+        <li>Category: @b.Category</li>
+        <li>Pages: @b.PageCount</li>
+        <li>Price: @b.Price</li>
+    </ul>
+    <br />
+}
 
 <div page-book="@Model.PageInfo" page-action="Index"></div>
