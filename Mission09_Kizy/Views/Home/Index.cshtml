@@ -4,64 +4,52 @@
     ViewData["Title"] = "Home Page";
 }
 
+
 <div class="container">
-    <h1 class="my-5">The Book project</h1>
+    <h1 class="my-5">The Bookstore</h1>
     <div class="row">
+
         @foreach (Book b in Model.Books)
         {
-            <div class="col-md-4 mb-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h3 class="card-title">@b.Title</h3>
-                        <h5 class="card-subtitle mb-2 text-muted">@b.Author</h5>
-                        <p class="card-text">@b.Publisher</p>
-                        <ul class="list-unstyled">
-                            <li><strong>ISBN:</strong> @b.Isbn Served</li>
-                            <li><strong>Classification:</strong> @b.Classification</li>
-                            <li><strong>Category:</strong> @b.Category</li>
-                            <li><strong>Pages:</strong> @b.PageCount</li>
-                            <li><strong>Price:</strong> @b.Price</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            <partial name="BookstoreSummary" model="b" />
         }
     </div>
 
-    <nav>
-        <ul class="pagination justify-content-center">
-            @if (Model.PageInfo.HasPreviousPage)
-            {
-                <li class="page-item">
-                    <a class="page-link" href="@Url.Action(Model.PageAction, new { pageNum = Model.PageInfo.PageNumber - 1 })">Previous</a>
-                </li>
-            }
 
-            @for (int i = 1; i <= Model.PageInfo.TotalPages; i++)
-            {
-                <li class="page-item @(i == Model.PageInfo.PageNumber ? "active" : "")">
-                    <a class="page-link" href="@Url.Action(Model.PageAction, new { pageNum = i })">@i</a>
-                </li>
-            }
+        <nav>
+            <ul class="pagination justify-content-center">
+                @if (Model.PageInfo.HasPreviousPage)
+                {
+                    <li class="page-item">
+                        <a class="page-link" href="@Url.Action(Model.PageAction, new { pageNum = Model.PageInfo.PageNumber - 1 })">Previous</a>
+                    </li>
+                }
 
-            @if (Model.PageInfo.HasNextPage)
-            {
-                <li class="page-item">
-                    <a class="page-link" href="@Url.Action(Model.PageAction, new { pageNum = Model.PageInfo.PageNumber + 1 })">Next</a>
-                </li>
-            }
-        </ul>
-    </nav>
-</div>
+                @for (int i = 1; i <= Model.PageInfo.TotalPages; i++)
+                {
+                    <li class="page-item @(i == Model.PageInfo.PageNumber ? "active" : "")">
+                        <a class="page-link" href="@Url.Action(Model.PageAction, new { pageNum = i })">@i</a>
+                    </li>
+                }
 
-<style>
-    .card-text {
-        font-size: 14px;
-        color: #888;
-    }
+                @if (Model.PageInfo.HasNextPage)
+                {
+                    <li class="page-item">
+                        <a class="page-link" href="@Url.Action(Model.PageAction, new { pageNum = Model.PageInfo.PageNumber + 1 })">Next</a>
+                    </li>
+                }
+            </ul>
+        </nav>
+    </div>
 
-    .card-subtitle {
-        font-size: 16px;
-        font-weight: 600;
-    }
-</style>
+    <style>
+        .card-text {
+            font-size: 14px;
+            color: #888;
+        }
+
+        .card-subtitle {
+            font-size: 16px;
+            font-weight: 600;
+        }
+    </style>
