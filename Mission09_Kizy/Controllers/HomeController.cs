@@ -16,13 +16,14 @@ namespace Mission09_Kizy.Controllers
         {
             repo = temp;
         }
-        public IActionResult Index(int pageNum = 1)
+        public IActionResult Index(string bookCategory, int pageNum = 1)
         {
             int pageSize = 3;
 
             var x = new BooksViewModel
             {
                 Books = repo.Books
+                .Where(p => p.Category == bookCategory)
                 .OrderBy(p => p.Author)
                 .Skip((pageNum - 1) * pageSize)
                 .Take(pageSize),
