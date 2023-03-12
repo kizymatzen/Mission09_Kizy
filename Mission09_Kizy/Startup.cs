@@ -53,12 +53,19 @@ namespace Mission09_Kizy
 
             app.UseEndpoints(endpoints =>
             {
-            endpoints.MapControllerRoute(
-                name: "Paging",
-                pattern: "Page {pageNum}",
-                defaults: new { Controller = "Home", Action = "Index" });
+                endpoints.MapControllerRoute("categorypage",
+                    "{bookCategory}/Page{pageNum}",
+                    new { Controller = "Home", action = "Index" });
+
+                endpoints.MapControllerRoute("Paging", "Page {pageNum}", new { Controller = "Home", Action = "Index" }); 
+
+                endpoints.MapControllerRoute("category",
+                    "{bookCategory}",
+                    new { Controller = "Home", action = "Index", pageNum = 1 });
+
+           
               
-               endpoints.MapDefaultControllerRoute();
+                endpoints.MapDefaultControllerRoute();
             });
         }
     }

@@ -3,9 +3,18 @@
 
 @model IEnumerable<string>
 
-<a asp-controller="Home" asp-action="Index">Home</a>
+<div class="d-grid">
+    <form>
+        <select class="form-select" onchange="window.location.href = this.value;">
+            <option value="@Url.Action("Index", "Home", new { bookCategory = (string)null })">Home</option>
+            @foreach (string c in Model)
+            {
+                <option value="@Url.Action("Index", "Home", new { bookCategory = c })">@c</option>
+            }
+        </select>
+    </form>
+</div>
 
-@foreach (string c in Model)
-{
-    <a asp-controller="Home" asp-action="Index" asp-route-bookCategory="@c">@c</a>
-}
+
+
+
