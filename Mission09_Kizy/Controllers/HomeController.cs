@@ -23,7 +23,7 @@ namespace Mission09_Kizy.Controllers
             var x = new BooksViewModel
             {
                 Books = repo.Books
-                .Where(p => p.Category == bookCategory)
+                .Where(p => p.Category == bookCategory || bookCategory == null)
                 .OrderBy(p => p.Author)
                 .Skip((pageNum - 1) * pageSize)
                 .Take(pageSize),
