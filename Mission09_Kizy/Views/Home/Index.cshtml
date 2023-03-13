@@ -16,31 +16,41 @@
     </div>
 
     @*page selection with next and previous page*@
-        <nav>
-            <ul class="pagination justify-content-center">
-                @if (Model.PageInfo.HasPreviousPage)
-                {
-                    <li class="page-item">
-                        <a class="page-link" href="@Url.Action(Model.PageAction, new { pageNum = Model.PageInfo.PageNumber - 1 })">Previous</a>
-                    </li>
-                }
+<div class="d-flex justify-content-between align-items-center">
+    <nav>
+        <ul class="pagination justify-content-center">
+            @if (Model.PageInfo.HasPreviousPage)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="@Url.Action(Model.PageAction, new { pageNum = Model.PageInfo.PageNumber - 1 })">Previous</a>
+                </li>
+            }
 
-                @for (int i = 1; i <= Model.PageInfo.TotalPages; i++)
-                {
-                    <li class="page-item @(i == Model.PageInfo.PageNumber ? "active" : "")">
-                        <a class="page-link" href="@Url.Action(Model.PageAction, new { pageNum = i })">@i</a>
-                    </li>
-                }
+            @for (int i = 1; i <= Model.PageInfo.TotalPages; i++)
+            {
+                <li class="page-item @(i == Model.PageInfo.PageNumber ? "active" : "")">
+                    <a class="page-link" href="@Url.Action(Model.PageAction, new { pageNum = i })">@i</a>
+                </li>
+            }
 
-                @if (Model.PageInfo.HasNextPage)
-                {
-                    <li class="page-item">
-                        <a class="page-link" href="@Url.Action(Model.PageAction, new { pageNum = Model.PageInfo.PageNumber + 1 })">Next</a>
-                    </li>
-                }
-            </ul>
-        </nav>
-    </div>
+            @if (Model.PageInfo.HasNextPage)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="@Url.Action(Model.PageAction, new { pageNum = Model.PageInfo.PageNumber + 1 })">Next</a>
+                </li>
+            }
+        </ul>
+    </nav>
+    <form method="post" asp-page="/ShoppingCart">
+        <input type="hidden" asp-for="@Model."
+        <span class="card-text float-end">
+            <button type="submit" class="btn btn-circle" title="Add book">
+                <span class="plus-sign"><b>+</b></span>
+            </button>
+        </span>
+    </form>
+</div>
+</div>
 
     <style>
         .card-text {
@@ -53,3 +63,5 @@
             font-weight: 600;
         }
     </style>
+
+

@@ -16,28 +16,28 @@ namespace Mission09_Kizy.Controllers
         {
             repo = temp;
         }
-        public IActionResult Index(string bookCategory, int pageNum = 1)
-        {
-            int pageSize = 3;
-
-            var x = new BooksViewModel
+            public IActionResult Index(string bookCategory, int pageNum = 1)
             {
-                Books = repo.Books
-                .Where(p => p.Category == bookCategory || bookCategory == null)
-                .OrderBy(p => p.Author)
-                .Skip((pageNum - 1) * pageSize)
-                .Take(pageSize),
+                int pageSize = 3;
 
-                PageInfo = new PageInfo
+                var x = new BooksViewModel
                 {
-                    TotalNumProjects =
-                    (bookCategory == null
-                        ? repo.Books.Count()
-                        : repo.Books.Where(x => x.Category == bookCategory).Count()),
-                    ProjectsPerPage = pageSize,
-                    CurrentPage = pageNum
-                }
-            };
+                    Books = repo.Books
+                    .Where(p => p.Category == bookCategory || bookCategory == null)
+                    .OrderBy(p => p.Author)
+                    .Skip((pageNum - 1) * pageSize)
+                    .Take(pageSize),
+
+                    PageInfo = new PageInfo
+                    {
+                        TotalNumProjects =
+                        (bookCategory == null
+                            ? repo.Books.Count()
+                            : repo.Books.Where(x => x.Category == bookCategory).Count()),
+                        ProjectsPerPage = pageSize,
+                        CurrentPage = pageNum
+                    }
+                };
 
             // Add the PageAction property
             x.PageAction = "Index";
