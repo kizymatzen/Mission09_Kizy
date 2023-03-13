@@ -30,7 +30,10 @@ namespace Mission09_Kizy.Controllers
 
                 PageInfo = new PageInfo
                 {
-                    TotalNumProjects = repo.Books.Count(),
+                    TotalNumProjects =
+                    (bookCategory == null
+                        ? repo.Books.Count()
+                        : repo.Books.Where(x => x.Category == bookCategory).Count()),
                     ProjectsPerPage = pageSize,
                     CurrentPage = pageNum
                 }

@@ -18,6 +18,8 @@ namespace Mission09_Kizy.Components
 
         public IViewComponentResult Invoke()
         {
+            ViewBag.SelectedType = RouteData?.Values["bookCategory"];
+
             var category = reposi.Books
                 .Select(x => x.Category)
                 .Distinct()

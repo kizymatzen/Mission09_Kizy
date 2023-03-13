@@ -6,7 +6,7 @@
 
 
 <div class="container">
-    <h1 class="my-5">The Bookstore</h1>
+    <h1 class="my-5">Clever Bookstore</h1>
     <div class="row">
 
         @foreach (Book b in Model.Books)
@@ -15,7 +15,7 @@
         }
     </div>
 
-
+    @*page selection with next and previous page*@
         <nav>
             <ul class="pagination justify-content-center">
                 @if (Model.PageInfo.HasPreviousPage)
