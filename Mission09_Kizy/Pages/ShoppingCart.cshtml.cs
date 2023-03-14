@@ -31,7 +31,7 @@ namespace Mission09_Kizy.Pages
             Book b = repo.Books.FirstOrDefault(x => x.BookId == bookId);
 
             basket = HttpContext.Session.GetJson<Basket>("basket") ?? new Basket();
-            basket.AddItem(b, 1);
+            basket.AddItem(b, 1, b);
 
             HttpContext.Session.SetJson("basket", basket);
 

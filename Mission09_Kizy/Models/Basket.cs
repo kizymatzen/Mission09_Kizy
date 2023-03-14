@@ -9,45 +9,45 @@ namespace Mission09_Kizy.Models
     {
         public List<BasketLineItem> Items { get; set; } = new List<BasketLineItem>();
 
-        public void AddItem (Book book, int qty, decimal price)
+        public void AddItem(Book book, int qty, Book price)
         {
-            BasketLineItem Line = Items
-                .Where(b => b.Books.BookId == book.BookId)
-                .FirstOrDefault();
+            BasketLineItem line = Items.FirstOrDefault(b => b.Books.BookId == book.BookId);
 
-
-            if(Line == null)
+            if (line == null)
             {
                 Items.Add(new BasketLineItem
                 {
                     Books = book,
                     Quantity = qty,
-                    //Price = price,
-
-
+                    Price = price
                 });
             }
             else
             {
-                Line.Quantity += qty; /*line.Quantity + qty*/
+                line.Quantity += qty;
             }
         }
 
-        //public double CalculateTotal()
-        //{
-        //    double sum = (double)Items.Sum(x => x.Quantity * x.Price);
+        public decimal CalculateSubtotal()
+        {
+            decimal sum = (decimal)Items.Sum(x => x.Quantity * x.Books.Price);
+            return sum;
+        }
 
-        //    return sum;
-        //}
+        public decimal CalculateTotal()
+        {
+            decimal subtotal = CalculateSubtotal();
+            decimal total = subtotal + (decimal)(subtotal * 0.1m); // assuming 10% tax
+
+            return total;
+        }
     }
 
-    
     public class BasketLineItem
     {
         public int LineID { get; set; }
         public Book Books { get; set; }
         public int Quantity { get; set; }
-        public decimal Price { get; set; }
-
+        public Book Price { get; set; }
     }
 }
