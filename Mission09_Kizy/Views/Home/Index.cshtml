@@ -1,8 +1,9 @@
-﻿@model BooksViewModel
-
-@{
+﻿@{
     ViewData["Title"] = "Home Page";
 }
+
+@model BooksViewModel
+
 
 
 <div class="container">
@@ -41,27 +42,19 @@
             }
         </ul>
     </nav>
-    <form method="post" asp-page="/ShoppingCart">
-        <input type="hidden" asp-for="@Model."
-        <span class="card-text float-end">
-            <button type="submit" class="btn btn-circle" title="Add book">
-                <span class="plus-sign"><b>+</b></span>
-            </button>
-        </span>
-    </form>
 </div>
 </div>
 
-    <style>
-        .card-text {
-            font-size: 14px;
-            color: #888;
-        }
+<style>
+    .card-text {
+        font-size: 14px;
+        color: #888;
+    }
 
-        .card-subtitle {
-            font-size: 16px;
-            font-weight: 600;
-        }
-    </style>
+    .card-subtitle {
+        font-size: 16px;
+        font-weight: 600;
+    }
+</style>
 
 

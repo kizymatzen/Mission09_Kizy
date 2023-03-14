@@ -3,30 +3,39 @@
 
 @model Book
 
-<div class="col-md-4 mb-4">
-    <div class="card">
-        <div class="card-body">
-            <h4 class="card-title">@Model.Title</h4>
-            <style>
-                .custom-badge {
-                    background-color: #FFC0CB; /* This is a light shade of pink.*/
-                    color: dimgray; /* This is the color of the text within the badge */
-                }
-            </style>
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">@Model.Title</h4>
+                <style>
+                    .custom-badge {
+                        background-color: #FFC0CB; /* This is a light shade of pink.*/
+                        color: dimgray; /* This is the color of the text within the badge */
+                    }
+                </style>
 
-            <span class="badge custom-badge" style="float:right">
-                Category: @Model.Category
-            </span>
+                <span class="badge custom-badge" style="float:right">
+                    Category: @Model.Category
+                </span>
 
-            <h5 class="card-subtitle mb-2 text-muted">@Model.Author</h5>
-            <p class="card-text">@Model.Publisher</p>
-            <ul class="list-unstyled">
-                <li><strong>ISBN:</strong> @Model.Isbn Served</li>
-                <li><strong>Classification:</strong> @Model.Classification</li>
-                <li><strong>Pages:</strong> @Model.PageCount</li>
-                <li><strong>Price:</strong> @Model.Price</li>
-            </ul>
+                <h5 class="card-subtitle mb-2 text-muted">@Model.Author</h5>
+                <p class="card-text">@Model.Publisher</p>
+                <ul class="list-unstyled">
+                    <li><strong>ISBN:</strong> @Model.Isbn Served</li>
+                    <li><strong>Classification:</strong> @Model.Classification</li>
+                    <li><strong>Pages:</strong> @Model.PageCount</li>
+                    <li><strong>Price:</strong> @Model.Price</li>
+                </ul>
+                <form method="post" asp-page="/ShoppingCart">
+                    <input type="hidden" asp-for="@Model.BookId" />
+                    <span class="card-text float-end">
+                        <button type="submit" class="btn btn-circle" title="Add book to shopping cart">
+                            <span class="plus-sign"><b>+</b></span>
+                        </button>
+                    </span>
+                </form>
+
+            </div>
         </div>
     </div>
-</div>
 
