@@ -9,7 +9,7 @@ namespace Mission09_Kizy.Models
     {
         public List<BasketLineItem> Items { get; set; } = new List<BasketLineItem>();
 
-        public void AddItem (Book book, int qty)
+        public void AddItem (Book book, int qty, decimal price)
         {
             BasketLineItem Line = Items
                 .Where(b => b.Books.BookId == book.BookId)
@@ -21,7 +21,10 @@ namespace Mission09_Kizy.Models
                 Items.Add(new BasketLineItem
                 {
                     Books = book,
-                    Quantity = qty
+                    Quantity = qty,
+                    //Price = price,
+
+
                 });
             }
             else
@@ -30,12 +33,12 @@ namespace Mission09_Kizy.Models
             }
         }
 
-        public double CalculateTotal()
-        {
-            double sum = Items.Sum(x => x.Quantity);
+        //public double CalculateTotal()
+        //{
+        //    double sum = (double)Items.Sum(x => x.Quantity * x.Price);
 
-            return sum;
-        }
+        //    return sum;
+        //}
     }
 
     
@@ -44,5 +47,7 @@ namespace Mission09_Kizy.Models
         public int LineID { get; set; }
         public Book Books { get; set; }
         public int Quantity { get; set; }
+        public decimal Price { get; set; }
+
     }
 }

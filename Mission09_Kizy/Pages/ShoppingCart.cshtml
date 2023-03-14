@@ -9,10 +9,11 @@
 
     <thead>
         <tr>
-            <th>Item</th>
+            <th>Book</th>
             <th>Quantity</th>
-            <th>Cost</th>
+            <th>Price</th>
             <th>Subtotal</th>
+            <th>Total</th>
 
         </tr>
     </thead>
@@ -23,7 +24,7 @@
             <tr>
                 <td>@i.Books.Title</td>
                 <td>@i.Quantity</td>
-                <td>@(i.Quantity )</td>
+                <td>@(i.Quantity * i.Books.Price )</td>
             </tr>
         }
     </tbody>
@@ -35,3 +36,7 @@
         </tr>
     </tfoot>
 </table>
+
+<div>
+    <a class="btn btn-primary" href="@Model.ReturnUrl">Continue buying</a>
+</div>

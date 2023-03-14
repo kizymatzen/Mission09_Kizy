@@ -53,7 +53,7 @@ namespace Mission09_Kizy
 
             //Corresponds to the wwwroot
             app.UseStaticFiles();
-
+            app.UseSession();
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>

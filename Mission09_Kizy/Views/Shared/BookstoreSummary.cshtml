@@ -28,6 +28,8 @@
                 </ul>
                 <form method="post" asp-page="/ShoppingCart">
                     <input type="hidden" asp-for="@Model.BookId" />
+                    <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+
                     <span class="card-text float-end">
                         <button type="submit" class="btn btn-circle" title="Add to cart">
                             <span class="plus-sign"><b>+</b></span>
