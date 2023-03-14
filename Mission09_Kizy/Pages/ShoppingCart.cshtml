@@ -4,3 +4,34 @@
 }
 
 <h1>Shopping Cart</h1>
+
+<table class="table table-bordered table-striped">
+
+    <thead>
+        <tr>
+            <th>Item</th>
+            <th>Quantity</th>
+            <th>Cost</th>
+            <th>Subtotal</th>
+
+        </tr>
+    </thead>
+    
+    <tbody>
+        @foreach (var i in Model.basket.Items)
+        {
+            <tr>
+                <td>@i.Books.Title</td>
+                <td>@i.Quantity</td>
+                <td>@(i.Quantity )</td>
+            </tr>
+        }
+    </tbody>
+
+    <tfoot>
+        <tr>
+            <td colspan="3">Total:</td>
+            <td>@Model.basket.CalculateTotal().ToString("c")</td>
+        </tr>
+    </tfoot>
+</table>

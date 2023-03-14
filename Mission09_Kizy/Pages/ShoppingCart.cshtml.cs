@@ -18,8 +18,9 @@ namespace Mission09_Kizy.Pages
         }
 
         public Basket basket { get; set; }
-        public void OnGet()
+        public void OnGet(Basket b)
         {
+            basket = b;
         }
 
         public IActionResult OnPost(int bookId)
@@ -29,7 +30,7 @@ namespace Mission09_Kizy.Pages
             basket = new Basket();
             basket.AddItem(b, 1);
 
-            return RedirectToPage();
+            return RedirectToPage(basket);
         }
     }
 }
