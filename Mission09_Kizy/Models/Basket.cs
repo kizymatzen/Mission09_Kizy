@@ -9,7 +9,7 @@ namespace Mission09_Kizy.Models
     {
         public List<BasketLineItem> Items { get; set; } = new List<BasketLineItem>();
 
-        public void AddItem(Book book, int qty, Book price)
+        public virtual void AddItem(Book book, int qty, Book price)
         {
             BasketLineItem line = Items.FirstOrDefault(b => b.Books.BookId == book.BookId);
 
@@ -26,6 +26,16 @@ namespace Mission09_Kizy.Models
             {
                 line.Quantity += qty;
             }
+        }
+
+        public virtual void RemoveItem (Book book)
+        {
+            Items.RemoveAll(x => x.Books.BookId == book.BookId);
+        }
+
+        public virtual void ClearBasket()
+        {
+            Items.Clear();
         }
 
         public decimal CalculateSubtotal()
