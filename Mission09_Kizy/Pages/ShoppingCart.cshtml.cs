@@ -12,14 +12,15 @@ namespace Mission09_Kizy.Pages
     public class ShoppingCartModel : PageModel
     {
         private IBookstoreRepository repo { get; set; }
-
-        public ShoppingCartModel (IBookstoreRepository temp)
-        {
-            repo = temp;
-        }
-
         public Basket basket { get; set; }
         public string ReturnUrl { get; set; }
+        public ShoppingCartModel (IBookstoreRepository temp, Basket b)
+        {
+            repo = temp;
+            basket = b;
+        }
+
+       
         public void OnGet(string returnUrl)
         {
             ReturnUrl = returnUrl ?? "/";
@@ -36,6 +37,13 @@ namespace Mission09_Kizy.Pages
             HttpContext.Session.SetJson("basket", basket);
 
             return RedirectToPage(new { ReturnUrl = returnUrl });
+        }
+
+        public IActionResult OnPostRemove(int projectId, string returnUrl)
+        {
+            basket.RemoveItem(basket.Items.First(x => x.Books.BookId == projectId).Books);
+
+            return RedirectToPage( new {ReturnUrl = returnUrl});
         }
     }
 }

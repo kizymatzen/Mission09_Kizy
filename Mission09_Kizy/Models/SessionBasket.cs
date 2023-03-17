@@ -14,6 +14,12 @@ namespace Mission09_Kizy.Models
         public static Basket GetBasket (IServiceProvider services)
         {
             ISession session = services.GetRequiredService<HttpContextAccessor>()?.HttpContext.Session;
+
+            SessionBasket basket = session?.GetJson<SessionBasket>("Basket") ?? new SessionBasket();
+
+            basket.Session = session;
+
+            return basket;
         }
 
         [JsonIgnore]

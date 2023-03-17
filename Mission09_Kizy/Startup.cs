@@ -25,7 +25,7 @@ namespace Mission09_Kizy
         {
             Configuration = temp;
         }
-         
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
@@ -40,8 +40,16 @@ namespace Mission09_Kizy
             services.AddRazorPages();
 
             services.AddDistributedMemoryCache();
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            services.AddHttpContextAccessor();
+
             services.AddSession();
+
+            services.AddScoped<Basket>(x => SessionBasket.GetBasket(x));
         }
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
