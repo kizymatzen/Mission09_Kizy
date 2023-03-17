@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
 using Mission09_Kizy.Infrastructure;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,11 @@ namespace Mission09_Kizy.Models
 {
     public class SessionBasket : Basket
     {
+        public static Basket GetBasket (IServiceProvider services)
+        {
+            ISession session = services.GetRequiredService<HttpContextAccessor>()?.HttpContext.Session;
+        }
+
         [JsonIgnore]
         public ISession Session { get; set; }
 
