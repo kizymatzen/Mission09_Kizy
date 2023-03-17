@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Mission09_Kizy.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,20 @@ namespace Mission09_Kizy.Models
         public override void AddItem(Book book, int qty, Book price)
         {
             base.AddItem(book, qty, price);
-            Session.SetJsson()
+            Session.SetJson("Basket", this);
         }
+
+        public override void RemoveItem(Book book)
+        {
+            base.RemoveItem(book);
+            Session.SetJson("Basket", this);
+        }
+
+        public override void ClearBasket()
+        {
+            base.ClearBasket();
+            Session.Remove("Basket");
+        }
+
+    }
 }
