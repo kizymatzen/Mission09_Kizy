@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Mission09_Kizy.Models
 {
@@ -28,10 +27,11 @@ namespace Mission09_Kizy.Models
             }
         }
 
-        public virtual void RemoveItem (Book book)
+        public virtual void RemoveItem(Book books)
         {
-            Items.RemoveAll(x => x.Books.BookId == book.BookId);
+            Items.RemoveAll(x => x.Books.BookId == books.BookId);
         }
+
 
         public virtual void ClearBasket()
         {
@@ -51,6 +51,9 @@ namespace Mission09_Kizy.Models
 
             return total;
         }
+
+        // Define the Session property
+        public Microsoft.AspNetCore.Http.ISession Session { get; set; }
     }
 
     public class BasketLineItem

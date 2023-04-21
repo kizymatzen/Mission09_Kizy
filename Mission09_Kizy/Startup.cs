@@ -29,6 +29,7 @@ namespace Mission09_Kizy
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddRazorPages();
 
             services.AddDbContext<BookstoreContext>(options =>
             {
@@ -36,20 +37,12 @@ namespace Mission09_Kizy
             });
 
             services.AddScoped<IBookstoreRepository, EFBookstoreRepository>();
-
-            services.AddRazorPages();
-
-            services.AddDistributedMemoryCache();
-
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-
-            services.AddHttpContextAccessor();
-
+            services.AddDistributedMemoryCache();
             services.AddSession();
 
             services.AddScoped<Basket>(x => SessionBasket.GetBasket(x));
         }
-
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

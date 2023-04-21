@@ -11,15 +11,29 @@ namespace Mission09_Kizy.Models
 {
     public class SessionBasket : Basket
     {
-        public static Basket GetBasket (IServiceProvider services)
+        public SessionBasket() { }
+
+        // Add a new constructor that takes in session and bookstoreRepository
+        public SessionBasket(ISession session, IBookstoreRepository bookstoreRepository)
         {
-            ISession session = services.GetRequiredService<HttpContextAccessor>()?.HttpContext.Session;
+            Session = session;
+            _bookstoreRepository = bookstoreRepository;
+        }
 
-            SessionBasket basket = session?.GetJson<SessionBasket>("Basket") ?? new SessionBasket();
+        private readonly IBookstoreRepository _bookstoreRepository;
 
-            basket.Session = session;
+        public static Basket GetBasket(IServiceProvider services)
+        {
+            var session = services.GetRequiredService<IHttpContextAccessor>().HttpContext.Session;
 
-            return basket;
+            // Inject IBookstoreRepository into the SessionBasket constructor
+            var bookstoreRepository = services.GetRequiredService<IBookstoreRepository>();
+
+            var basket = session.GetJson<Basket>("Basket") ?? new Basket();
+            // Pass session and bookstoreRepository to the SessionBasket constructor
+            var sessionBasket = new SessionBasket(session, bookstoreRepository);
+            sessionBasket.Items = basket.Items;
+            return sessionBasket;
         }
 
         [JsonIgnore]
@@ -36,6 +50,7 @@ namespace Mission09_Kizy.Models
             base.RemoveItem(book);
             Session.SetJson("Basket", this);
         }
+
 
         public override void ClearBasket()
         {

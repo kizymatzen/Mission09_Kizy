@@ -19,20 +19,22 @@
         @foreach (var i in Model.basket.Items)
         {
             var subtotal = i.Books.Price * i.Quantity;
-            <tr>
-                <td>@i.Books.Title</td>
-                <td>@i.Quantity</td>
-                <td>@i.Books.Price.ToString("c")</td>
-                <td>@subtotal.ToString("c")</td>
+        <tr>
+            <td>@i.Books.Title</td>
+            <td>@i.Quantity</td>
+            <td>@i.Books.Price.ToString("c")</td>
+            <td>@subtotal.ToString("c")</td>
 
-                <td>class="text-center"
-                    <form method="post" asp-page-handler="Remove">
-                        <input type="hidden" name="bookId" value="@i.Books.BookId" />
-                        <input type="hidden" name="returnUrl" value="@Model.ReturnUrl" />
-                        <button type="submit" class="btn btn-sm btn-danger">Remove</button>
-                     </form>
-                </td>
-            </tr>
+            <td class="text-center">
+                <form method="post" asp-page-handler="Remove">
+                    <input type="hidden" name="BookId" value="@i.Books.BookId" />
+                    <input type="hidden" name="returnUrl" value="@Model.ReturnUrl" />
+                    <button type="submit" class="btn btn-sm btn-danger">Remove</button>
+                </form>
+
+            </td>
+
+        </tr>
         }
     </tbody>
     <tfoot>

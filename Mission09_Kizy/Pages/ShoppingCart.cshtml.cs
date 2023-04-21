@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.DependencyInjection;
 using Mission09_Kizy.Infrastructure;
 using Mission09_Kizy.Models;
 
@@ -39,11 +40,12 @@ namespace Mission09_Kizy.Pages
             return RedirectToPage(new { ReturnUrl = returnUrl });
         }
 
-        public IActionResult OnPostRemove(int projectId, string returnUrl)
+        public IActionResult OnPostRemove(long BookId, string returnUrl)
         {
-            basket.RemoveItem(basket.Items.First(x => x.Books.BookId == projectId).Books);
+            basket.RemoveItem(basket.Items.First(x => x.Books.BookId == BookId).Books);
 
-            return RedirectToPage( new {ReturnUrl = returnUrl});
+            return RedirectToPage(new { ReturnUrl = returnUrl });
         }
+
     }
 }
